@@ -1,6 +1,8 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <b-form-input v-model="password" placeholder="test"></b-form-input>
+    <div class="mt-2">Value: {{ text }}</div>
     <h2>Essential Links</h2>
     <ul>
       <li>
@@ -89,6 +91,7 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+      text: ''
     }
   }
 }
