@@ -1,5 +1,5 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import Vue from 'vue'
+import Router from 'vue-router'
 
 const routerOptions = [
   { path: '/', component: 'HelloWorld' },
@@ -13,11 +13,9 @@ const routes = routerOptions.map(route => {
   }
 })
 
-Vue.use(VueRouter);
+Vue.use(Router)
 
-const router = new VueRouter({
+export default new Router({
   routes,
   mode: 'history'
-});
-
-export default router;
+})
