@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, abort, jsonify, request
 from flask_talisman import Talisman
+from flask_compress import Compress
 from pymongo import MongoClient
 
 myclient = MongoClient('mongodb://localhost:27017/')
@@ -8,6 +9,7 @@ mycol = mydb['urls']
 
 app = Flask(__name__, static_folder='../dist/static', template_folder='../dist')
 Talisman(app, content_security_policy=None)
+Compress(app)
 
 @app.route('/')
 @app.route('/index.html')
