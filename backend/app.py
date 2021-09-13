@@ -21,13 +21,10 @@ Compress(app)
 def isauthenticated(request):
     try:
         token = request.cookies.get('JWT')
-        print(token)
         data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
-        print(data)
         myquery = {'public_id': data['public_id']}
         current_user = mydb['auth'].find_one(myquery)
         if current_user is not None:
-            print('test')
             return True
     except:
         return False
@@ -80,6 +77,14 @@ def register():
     mydoc = mydb['auth'].insert_one(myquery)
     return jsonify({'message': 'registered successfully'})
 
+@app.route('/logout')
+def logout():
+    if not isauthenticated():
+        return redirect('/login')
+    response = redirect('/login')
+    response.set_cookie('JWT', '', expires=0)
+    return response
+
 @app.route('/api/auth/login', methods=['POST'])
 def authenticate():
     auth = request.authorization
@@ -90,7 +95,7 @@ def authenticate():
     if mydoc is not None:
         if check_password_hash(mydoc['password'], auth.password):
             token = jwt.encode({'public_id' : mydoc['public_id'], 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'], "HS256").decode('utf-8')
-            out = jsonify({'token' : token})
+            out = jsonify({'message': 'logged in successfully'})
             expire_date = datetime.datetime.now()
             expire_date = expire_date + datetime.timedelta(minutes=30)
             out.set_cookie('JWT', token, expires=expire_date)
