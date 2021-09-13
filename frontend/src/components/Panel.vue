@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <button type="button" class="btn btn-primary" @click="logout">Logout</button>
     <h2>Essential Links</h2>
     <ul>
       <li>
@@ -89,6 +90,12 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  methods: {
+    logout: function () {
+      const path = 'https://onebounce.me/api/auth/logout'
+      axios.get(path)
     }
   }
 }

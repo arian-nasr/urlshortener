@@ -77,7 +77,7 @@ def register():
     mydoc = mydb['auth'].insert_one(myquery)
     return jsonify({'message': 'registered successfully'})
 
-@app.route('/logout')
+@app.route('/api/auth/logout')
 def logout():
     response = redirect('/login')
     response.set_cookie('JWT', '', expires=0)
