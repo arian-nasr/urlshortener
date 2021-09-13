@@ -50,7 +50,7 @@ def shorten():
 def register():
     data = request.get_json()
     hashed_password = generate_password_hash(data['password'], method='sha256')
-    myquery = {'public_id': uuid.uuid4(), 'username': data['username'], 'password': data['password']}
+    myquery = {'public_id': uuid.uuid4(), 'username': data['username'], 'password': hashed_password}
     mydoc = mydb['auth'].insert_one(myquery)
     return jsonify({'message': 'registered successfully'})
 
