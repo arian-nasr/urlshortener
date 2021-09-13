@@ -38,9 +38,6 @@ def token_required(f):
        return f(current_user, *args, **kwargs)
    return decorator
 
-def isauthenticated():
-
-
 @app.route('/')
 @app.route('/index.html')
 @app.route('/login')
