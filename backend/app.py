@@ -88,7 +88,7 @@ def authenticate():
             token = jwt.encode({'public_id' : str(mydoc['public_id']), 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'], "HS256").decode('utf-8')
             out = jsonify({'token' : token})
             expire_date = datetime.datetime.now()
-            expire_date = expire_date + daytime.timedelta(minutes=30)
+            expire_date = expire_date + datetime.timedelta(minutes=30)
             out.set_cookie('JWT', token, expires=expire_date)
             return out
 
