@@ -1,13 +1,19 @@
-from flask import Flask, render_template, redirect, abort, jsonify, request
+from flask import Flask, render_template, redirect, abort, jsonify, request, make_response
+from werkzeug.security import generate_password_hash,check_password_hash
+import jwt
 from flask_talisman import Talisman
 from flask_compress import Compress
 from pymongo import MongoClient
+import os
+import datetime
+import uuid
 
 myclient = MongoClient('mongodb://localhost:27017/')
 mydb = myclient['urlshortener']
 mycol = mydb['urls']
 
 app = Flask(__name__, static_folder='../dist/static', template_folder='../dist')
+app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 Talisman(app, content_security_policy=None)
 Compress(app)
 
@@ -39,5 +45,24 @@ def shorten():
             mycol.insert_one(mydict)
             response_object['shorturl'] = 'onebounce.me/{}'.format(id)
     return jsonify(response_object)
+
+@app.route('/api/auth/register', methods=['POST'])
+def register():
+    data = request.get_json()
+    hashed_password = generate_password_hash(data['password'], method='sha256')
+    print(hashed_password)
+
+@app.route('/api/auth/login', methods=['POST'])
+def authenticate():
+    auth = request.authorization
+    if not auth or not auth.username or not auth.password: 
+       return make_response('could not verify', 401, {'Authentication': 'login required"'})
+    myquery = {'username': auth.username}
+    mydoc = mycol.find_one(myquery)
+    if mydoc is not None:
+        if check_password_hash(mydoc['password'], auth.password):
+            token = jwt.encode({'public_id' : mydoc['public_id'], 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'], "HS256")
+            return jsonify({'token' : token})
+    return make_response('could not verify',  401, {'Authentication': '"login required"'})
 
 app.run(debug=True, host='10.128.0.3', port=443, ssl_context=('onebounce_me.crt', 'onebounce_me.key'))
