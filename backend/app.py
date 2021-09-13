@@ -4,6 +4,7 @@ import jwt
 from flask_talisman import Talisman
 from flask_compress import Compress
 from pymongo import MongoClient
+from functools import wraps
 import os
 import datetime
 import uuid
@@ -17,11 +18,40 @@ app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 Talisman(app, content_security_policy=None)
 Compress(app)
 
+def token_required(f):
+   @wraps(f)
+   def decorator(*args, **kwargs):
+       print(*args, **kwargs)
+       token = None
+       if 'x-access-tokens' in request.headers:
+           token = request.headers['x-access-tokens']
+ 
+       if not token:
+           return jsonify({'message': 'a valid token is missing'})
+       try:
+           data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
+           myquery = {'public_id': data['public_id']}
+           current_user = mydb['auth'].find_one(myquery)
+       except:
+           return jsonify({'message': 'token is invalid'})
+ 
+       return f(current_user, *args, **kwargs)
+   return decorator
+
+def isauthenticated():
+
+
 @app.route('/')
 @app.route('/index.html')
 @app.route('/login')
 def vuerouter():
     return render_template('index.html')
+
+@app.route('/panel')
+@token_required
+def panel(current_user):
+    return render_template('index.html')
+
 
 @app.route('/<id>')
 def geturl(id):
@@ -33,18 +63,18 @@ def geturl(id):
         return redirect(redirurl)
     return abort(404)
 
-@app.route('/api/shorten', methods=['GET', 'POST'])
-def shorten():
-    response_object = {'status': 'success'}
-    if request.method == 'POST':
-        post_data = request.get_json()
-        if post_data.get('operation') == 'shorten':
-            id = post_data.get('id')
-            url = post_data.get('url')
-            mydict = {'id': id, 'url': url, 'clicks': 0}
-            mycol.insert_one(mydict)
-            response_object['shorturl'] = 'onebounce.me/{}'.format(id)
-    return jsonify(response_object)
+# @app.route('/api/shorten', methods=['GET', 'POST'])
+# def shorten():
+#     response_object = {'status': 'success'}
+#     if request.method == 'POST':
+#         post_data = request.get_json()
+#         if post_data.get('operation') == 'shorten':
+#             id = post_data.get('id')
+#             url = post_data.get('url')
+#             mydict = {'id': id, 'url': url, 'clicks': 0}
+#             mycol.insert_one(mydict)
+#             response_object['shorturl'] = 'onebounce.me/{}'.format(id)
+#     return jsonify(response_object)
 
 @app.route('/api/auth/register', methods=['POST'])
 def register():
@@ -57,7 +87,7 @@ def register():
 @app.route('/api/auth/login', methods=['POST'])
 def authenticate():
     auth = request.authorization
-    if not auth or not auth.username or not auth.password: 
+    if not auth or not auth.username or not auth.password:
        return make_response('could not verify', 401, {'Authentication': 'login required"'})
     myquery = {'username': auth.username}
     mydoc = mydb['auth'].find_one(myquery)
