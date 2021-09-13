@@ -27,7 +27,16 @@ export default {
   },
   methods: {
     submitform: function () {
-      alert(this.email)
+      const path = 'https://onebounce.me/api/auth/login';
+      axios.post(path, {
+        auth: {
+          username: this.email,
+          password: this.password
+        }
+      })
+      .then((res) => {
+        console.log(res.data);
+      });
     }
   }
 }

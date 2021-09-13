@@ -28,7 +28,6 @@ def isauthenticated(request):
             return True
     return False
 
-
 @app.route('/')
 @app.route('/index.html')
 def index():
@@ -45,7 +44,6 @@ def panel():
     if not isauthenticated(request):
         return redirect('/login')
     return render_template('index.html')
-
 
 @app.route('/<id>')
 def geturl(id):
