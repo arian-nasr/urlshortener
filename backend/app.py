@@ -21,6 +21,7 @@ Compress(app)
 def isauthenticated(request):
     try:
         token = request.cookies.get('JWT')
+        print(token)
         data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
         myquery = {'public_id': data['public_id']}
         current_user = mydb['auth'].find_one(myquery)
