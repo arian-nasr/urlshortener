@@ -8,7 +8,7 @@
         <label for="exampleInputPassword1">Password</label>
         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
       </div>
-      <button class="btn btn-primary" v-onclick="submitform">Submit</button>
+      <button type="button" class="btn btn-primary" v-onclick="submitform">Submit</button>
     </form>
 </template>
 
