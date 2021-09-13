@@ -79,8 +79,6 @@ def register():
 
 @app.route('/logout')
 def logout():
-    if not isauthenticated(request):
-        return redirect('/login')
     response = redirect('/login')
     response.set_cookie('JWT', '', expires=0)
     return response
