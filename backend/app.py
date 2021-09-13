@@ -19,14 +19,15 @@ Talisman(app, content_security_policy=None)
 Compress(app)
 
 def isauthenticated(request):
-    if 'x-access-tokens' in request.headers:
-        token = request.headers['x-access-tokens']
+    try:
+        token = request.cookies.get('JWT')
         data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
         myquery = {'public_id': data['public_id']}
         current_user = mydb['auth'].find_one(myquery)
         if current_user is not None:
             return True
-    return False
+    except:
+        return False
 
 @app.route('/')
 @app.route('/index.html')
