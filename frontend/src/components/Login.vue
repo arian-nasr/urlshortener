@@ -37,10 +37,6 @@ export default {
           password: this.password
         }
       })
-        .then((res) => {
-          this.token = res.data.token
-          console.log(this.token)
-        })
     }
   }
 }
