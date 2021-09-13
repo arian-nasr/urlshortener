@@ -76,7 +76,7 @@ def geturl(id):
 def register():
     data = request.get_json()
     hashed_password = generate_password_hash(data['password'], method='sha256')
-    myquery = {'public_id': uuid.uuid4(), 'username': data['username'], 'password': hashed_password}
+    myquery = {'public_id': str(uuid.uuid4()), 'username': data['username'], 'password': hashed_password}
     mydoc = mydb['auth'].insert_one(myquery)
     return jsonify({'message': 'registered successfully'})
 
@@ -89,7 +89,7 @@ def authenticate():
     mydoc = mydb['auth'].find_one(myquery)
     if mydoc is not None:
         if check_password_hash(mydoc['password'], auth.password):
-            token = jwt.encode({'public_id' : str(mydoc['public_id']), 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'], "HS256").decode('utf-8')
+            token = jwt.encode({'public_id' : mydoc['public_id'], 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'], "HS256").decode('utf-8')
             out = jsonify({'token' : token})
             expire_date = datetime.datetime.now()
             expire_date = expire_date + datetime.timedelta(minutes=30)
