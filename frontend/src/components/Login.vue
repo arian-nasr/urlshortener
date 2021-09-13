@@ -21,7 +21,8 @@ export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      token: ''
     }
   },
   created () {
@@ -37,7 +38,8 @@ export default {
         }
       })
         .then((res) => {
-          console.log(res.data)
+          this.token = res.data
+          console.log(this.token)
         })
     }
   }

@@ -84,7 +84,6 @@ def authenticate():
     myquery = {'username': auth.username}
     mydoc = mydb['auth'].find_one(myquery)
     if mydoc is not None:
-        print(mydoc['username'], mydoc['password'], auth.password)
         if check_password_hash(mydoc['password'], auth.password):
             token = jwt.encode({'public_id' : str(mydoc['public_id']), 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'], "HS256").decode('utf-8')
             return jsonify({'token' : token})
