@@ -38,7 +38,7 @@ export default {
         }
       })
         .then((res) => {
-          this.token = res.data
+          this.token = res.data.token
           console.log(this.token)
         })
     }
