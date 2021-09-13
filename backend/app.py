@@ -13,7 +13,8 @@ Compress(app)
 
 @app.route('/')
 @app.route('/index.html')
-def index():
+@app.route('/login')
+def vuerouter():
     return render_template('index.html')
 
 @app.route('/<id>')
