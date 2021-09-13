@@ -18,39 +18,32 @@ app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 Talisman(app, content_security_policy=None)
 Compress(app)
 
-def test(func, user_path):
-    def callback(user_path):
-        print(func, user_path)
+def isauthenticated(request):
+    if 'x-access-tokens' in request.headers:
+        token = request.headers['x-access-tokens']
+        data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
+        myquery = {'public_id': data['public_id']}
+        current_user = mydb['auth'].find_one(myquery)
+        if current_user is not None:
+            return True
+    return False
 
-def token_required(f):
-   @wraps(f)
-   def decorator(*args, **kwargs):
-       token = None
-       if 'x-access-tokens' in request.headers:
-           token = request.headers['x-access-tokens']
- 
-       if not token:
-           return jsonify({'message': 'a valid token is missing'})
-       try:
-           data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
-           myquery = {'public_id': data['public_id']}
-           current_user = mydb['auth'].find_one(myquery)
-       except:
-           return jsonify({'message': 'token is invalid'})
- 
-       return f(current_user, *args, **kwargs)
-   return decorator
 
 @app.route('/')
 @app.route('/index.html')
+def index():
+    return render_template('index.html')
+
 @app.route('/login')
-def vuerouter():
+def login():
+    if isauthenticated(request):
+        return redirect('/panel')
     return render_template('index.html')
 
 @app.route('/panel')
-@test('/user')
-@token_required
 def panel(current_user):
+    if not isauthenticated(request):
+        return redirect('/login')
     return render_template('index.html')
 
 
