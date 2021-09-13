@@ -8,7 +8,7 @@
         <label for="exampleInputPassword1">Password</label>
         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary" v-onclick="submitform">Submit</button>
     </form>
 </template>
 
@@ -16,6 +16,12 @@
 export default {
   created () {
     document.title = 'Login'
+  }
+  methods: {
+    submitform: function (event) {
+      alert('Test!')
+      console.log('Test!')
+    }
   }
 }
 </script>
