@@ -31,7 +31,7 @@ export default {
     submitform: function () {
       const path = 'https://onebounce.me/api/auth/login'
       axios.post(path, {
-        auth: {
+        authorization: {
           username: this.email,
           password: this.password
         }
