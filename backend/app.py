@@ -16,6 +16,10 @@ Compress(app)
 def index():
     return render_template('index.html')
 
+@app.route('/login')
+def login():
+    return render_template('index.html')
+
 @app.route('/<id>')
 def geturl(id):
     myquery = {'id': id}
