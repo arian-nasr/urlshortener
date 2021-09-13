@@ -41,7 +41,7 @@ def login():
     return render_template('index.html')
 
 @app.route('/panel')
-def panel(current_user):
+def panel():
     if not isauthenticated(request):
         return redirect('/login')
     return render_template('index.html')
