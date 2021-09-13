@@ -37,7 +37,7 @@ export default {
           password: this.password
         }
       })
-      window.location.replace("https://onebounce.me/panel")
+      window.location.replace('https://onebounce.me/panel')
     }
   }
 }

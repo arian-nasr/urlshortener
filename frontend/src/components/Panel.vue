@@ -98,7 +98,7 @@ export default {
     logout: function () {
       const path = 'https://onebounce.me/api/auth/logout'
       axios.get(path)
-      window.location.replace("https://onebounce.me/login")
+      window.location.replace('https://onebounce.me/login')
     }
   }
 }
