@@ -86,7 +86,10 @@ def authenticate():
     if mydoc is not None:
         if check_password_hash(mydoc['password'], auth.password):
             token = jwt.encode({'public_id' : str(mydoc['public_id']), 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'], "HS256").decode('utf-8')
-            return jsonify({'token' : token})
+            out = jsonify({'token' : token})
+            out.set_cookie('JWT', token)
+            return out
+
     return make_response('could not verify',  401, {'Authentication': '"login required"'})
 
 app.run(debug=True, host='10.128.0.3', port=443, ssl_context=('onebounce_me.crt', 'onebounce_me.key'))
