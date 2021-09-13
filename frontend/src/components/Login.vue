@@ -1,4 +1,5 @@
 <template>
+  <div id="login" class="container">
     <form>
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
@@ -10,6 +11,7 @@
       </div>
       <button type="button" class="btn btn-primary" @click="submitform">Submit</button>
     </form>
+  </div>
 </template>
 
 <script>
