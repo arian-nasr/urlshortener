@@ -47,7 +47,7 @@ def vuerouter():
     return render_template('index.html')
 
 @app.route('/panel')
-@test
+@test('/panel')
 @token_required
 def panel(current_user):
     return render_template('index.html')
