@@ -64,7 +64,7 @@ def authenticate():
     if mydoc is not None:
         print(mydoc['username'], mydoc['password'], auth.password)
         if check_password_hash(mydoc['password'], auth.password):
-            token = jwt.encode({'public_id' : mydoc['public_id'], 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'], "HS256").decode('utf-8')
+            token = jwt.encode({'public_id' : str(mydoc['public_id']), 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'], "HS256").decode('utf-8')
             return jsonify({'token' : token})
     return make_response('could not verifyf',  401, {'Authentication': '"login required"'})
 
