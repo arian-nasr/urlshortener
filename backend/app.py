@@ -79,7 +79,7 @@ def register():
 
 @app.route('/api/auth/logout')
 def logout():
-    response = redirect('/login')
+    response = jsonify({'message': 'success'})
     response.set_cookie('JWT', '', expires=0)
     return response
 
@@ -93,7 +93,7 @@ def authenticate():
     if mydoc is not None:
         if check_password_hash(mydoc['password'], auth.password):
             token = jwt.encode({'public_id' : mydoc['public_id'], 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'], "HS256").decode('utf-8')
-            out = jsonify({'message': 'logged in successfully'})
+            out = jsonify({'message': 'success'})
             expire_date = datetime.datetime.now()
             expire_date = expire_date + datetime.timedelta(minutes=30)
             out.set_cookie('JWT', token, expires=expire_date)

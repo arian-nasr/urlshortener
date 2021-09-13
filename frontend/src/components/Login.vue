@@ -37,7 +37,11 @@ export default {
           password: this.password
         }
       })
-      window.location.replace('https://onebounce.me/panel')
+        .then((res) => {
+          if (res.data.message == 'success') {
+            window.location.replace('https://onebounce.me/panel')
+          }
+        })
     }
   }
 }

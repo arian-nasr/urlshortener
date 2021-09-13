@@ -98,7 +98,11 @@ export default {
     logout: function () {
       const path = 'https://onebounce.me/api/auth/logout'
       axios.get(path)
-      window.location.replace('https://onebounce.me/login')
+        .then((res) => {
+          if (res.data.message == 'success') {
+            window.location.replace('https://onebounce.me/login')
+          }
+        })
     }
   }
 }
