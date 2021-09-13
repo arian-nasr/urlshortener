@@ -16,7 +16,7 @@
 export default {
   created () {
     document.title = 'Login'
-  }
+  },
   methods: {
     submitform: function (event) {
       alert('Test!')
