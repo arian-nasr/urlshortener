@@ -20,8 +20,8 @@
 
 <script>
 export default {
-    created() {
-        document.title = 'Login'
-    }
+  created() {
+    document.title = 'Login'
+  }
 }
 </script>
