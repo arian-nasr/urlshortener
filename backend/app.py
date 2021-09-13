@@ -26,6 +26,7 @@ def isauthenticated(request):
         myquery = {'public_id': data['public_id']}
         current_user = mydb['auth'].find_one(myquery)
         if current_user is not None:
+            print('test')
             return True
     except:
         return False
