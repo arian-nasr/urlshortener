@@ -38,7 +38,7 @@ export default {
         }
       })
         .then((res) => {
-          if (res.data.message == 'success') {
+          if (res.data.message === 'success') {
             window.location.replace('https://onebounce.me/panel')
           }
         })
