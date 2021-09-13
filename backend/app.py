@@ -50,7 +50,9 @@ def shorten():
 def register():
     data = request.get_json()
     hashed_password = generate_password_hash(data['password'], method='sha256')
-    print(hashed_password)
+    myquery = {'public_id': uuid.uuid4(), 'username': data['username'], 'password': data['password']}
+    mydoc = mydb['auth'].insert_one(myquery)
+    return jsonify({'message': 'registered successfully'})
 
 @app.route('/api/auth/login', methods=['POST'])
 def authenticate():
@@ -58,7 +60,7 @@ def authenticate():
     if not auth or not auth.username or not auth.password: 
        return make_response('could not verify', 401, {'Authentication': 'login required"'})
     myquery = {'username': auth.username}
-    mydoc = mycol.find_one(myquery)
+    mydoc = mydb['auth'].find_one(myquery)
     if mydoc is not None:
         if check_password_hash(mydoc['password'], auth.password):
             token = jwt.encode({'public_id' : mydoc['public_id'], 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'], "HS256")
