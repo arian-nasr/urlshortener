@@ -19,7 +19,8 @@ Talisman(app, content_security_policy=None)
 Compress(app)
 
 def test(func, user_path):
-    print(func, user_path)
+    def callback(user_path):
+        print(func, user_path)
 
 def token_required(f):
    @wraps(f)
@@ -47,7 +48,7 @@ def vuerouter():
     return render_template('index.html')
 
 @app.route('/panel')
-@test('/panel')
+@test
 @token_required
 def panel(current_user):
     return render_template('index.html')
