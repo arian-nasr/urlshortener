@@ -18,10 +18,12 @@ app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 Talisman(app, content_security_policy=None)
 Compress(app)
 
+def test(func, user_path):
+    print(func, user_path)
+
 def token_required(f):
    @wraps(f)
    def decorator(*args, **kwargs):
-       print(*args, **kwargs)
        token = None
        if 'x-access-tokens' in request.headers:
            token = request.headers['x-access-tokens']
@@ -45,6 +47,7 @@ def vuerouter():
     return render_template('index.html')
 
 @app.route('/panel')
+@test
 @token_required
 def panel(current_user):
     return render_template('index.html')
