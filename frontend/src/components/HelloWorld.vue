@@ -6,15 +6,25 @@
           <!-- <h5 class="modal-title">Modal title</h5> -->
           <h2 class="fw-bold mb-0">URL Shortener</h2>
         </div>
-        <div class="modal-body p-5 pt-0">
+        <div class="modal-body p-5 pt-0" v-if"shortened">
           <form class="">
             <div class="form-floating mb-3">
               <input type="text" class="form-control rounded-4" id="floatingInput" placeholder="Long URL" v-model="url">
               <label for="floatingInput">Long URL</label>
             </div>
-            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="button" @click="submitform">Shorten</button>
+            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="button" @click="shorten">Shorten</button>
             <div v-if="errorShow" class="alert alert-danger rounded-4" role="alert">
               {{ errorMsg }}
+            </div>
+          </form>
+        </div>
+        <div class="modal-body p-5 pt-0" v-else>
+          <form class="">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" v-model="shortenedURL" ref="shortened">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">Copy</button>
+              </div>
             </div>
           </form>
         </div>
@@ -30,7 +40,19 @@ export default {
     return {
       url: '',
       errorShow: false,
-      errorMsg: ''
+      errorMsg: '',
+      shortened: false,
+      shortenedURL: ''
+    }
+  },
+  methods: {
+    shorten: function () {
+      this.shortened = true
+      this.shortenedURL = 'https://onebounce.me/google'
+    },
+    clipboard: function () {
+      this.$refs.shortened.select()
+      navigator.clipboard.writeText(this.shortenedURL)
     }
   }
 }
