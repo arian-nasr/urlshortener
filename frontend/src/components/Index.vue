@@ -17,14 +17,14 @@
           </div>
         </div>
         <div v-else class="modal-body p-5 pt-0">
-          <form class="">
             <div class="input-group mb-3">
               <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" v-model="shortenedURL" ref="shortened">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button" @click="clipboard">Copy</button>
               </div>
             </div>
-          </form>
+            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="button" @click="back">Start Over</button>
+          </div>
         </div>
       </div>
     </div>
@@ -70,6 +70,11 @@ export default {
     clipboard: function () {
       this.$refs.shortened.select()
       navigator.clipboard.writeText(this.shortenedURL)
+    },
+    back: function () {
+      this.url = ''
+      this.notshortened = true
+      this.shortenedURL = ''
     }
   }
 }
