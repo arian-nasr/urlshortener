@@ -4,6 +4,7 @@ import jwt
 from flask_talisman import Talisman
 from flask_compress import Compress
 from pymongo import MongoClient
+import hashlib
 from functools import wraps
 import os
 import datetime
@@ -68,6 +69,19 @@ def geturl(id):
 #             mycol.insert_one(mydict)
 #             response_object['shorturl'] = 'onebounce.me/{}'.format(id)
 #     return jsonify(response_object)
+
+@app.route('/api/shorten', methods=['POST'])
+def shorten():
+    post_data = request.get_json()
+    longurl = post_data.get('url')
+    id = str(hashlib.md5(longurl.encode('utf-8')).hexdigest())[:5]
+    myquery = {'url': longurl}
+    newvalues = {'$setOnInsert': {'id': id, 'url': longurl, 'clicks': 0}}
+    mycol.findOneAndUpdate(myquery, newvalues, upsert=True)
+    response_object = {'status': 'success'}
+    response_object['shorturl'] = 'onebounce.me/{}'.format(id)
+    return jsonify(response_object)
+
 
 @app.route('/api/auth/register', methods=['POST'])
 def register():
