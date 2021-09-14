@@ -77,7 +77,7 @@ def shorten():
     id = str(hashlib.md5(longurl.encode('utf-8')).hexdigest())[:5]
     myquery = {'url': longurl}
     newvalues = {'$setOnInsert': {'id': id, 'url': longurl, 'clicks': 0}}
-    mydoc = mycol.findOneAndUpdate(myquery, newvalues, upsert=True)
+    mydoc = mycol.find_one_and_update(myquery, newvalues, upsert=True)
     response_object = {'status': 'success'}
     response_object['shorturl'] = 'onebounce.me/{}'.format(mydoc['id'])
     return jsonify(response_object)
