@@ -10,11 +10,11 @@
         <div class="modal-body p-5 pt-0">
           <form class="">
             <div class="form-floating mb-3">
-              <input type="email" class="form-control rounded-4" id="floatingInput" v-model="email">
+              <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com" v-model="email">
               <label for="floatingInput">Email address</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="password" class="form-control rounded-4" id="floatingPassword" v-model="password" v-on:keyup.enter="submitform">
+              <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password" v-model="password" v-on:keyup.enter="submitform">
               <label for="floatingPassword">Password</label>
             </div>
             <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="button" @click="submitform">Sign In</button>
