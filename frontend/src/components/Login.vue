@@ -19,7 +19,7 @@
             </div>
             <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="button" @click="submitform">Sign In</button>
             <div class="alert alert-danger" role="alert">
-              {{ errorMsg }}}
+              {{ errorMsg }}
             </div>
           </form>
         </div>
