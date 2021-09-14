@@ -47,20 +47,26 @@ export default {
   methods: {
     shorten: function () {
       this.errorShow = false
-      const path = 'https://onebounce.me/api/shorten'
-      const payload = {
-        url: this.url
+      if url !== '' {
+        const path = 'https://onebounce.me/api/shorten'
+        const payload = {
+          url: this.url
+        }
+        axios.post(path, payload)
+          .then((res) => {
+            this.shortenedURL = res.data.shorturl
+            this.notshortened = false
+          })
+          .catch((error) => {
+            this.errorMsg = 'An Unknown Error Occured'
+            this.errorShow = true
+            console.log(error)
+          })
+      } else {
+        this.errorMsg = 'Please Enter a URL'
+        this.errorShow = true
+        console.log(error)
       }
-      axios.post(path, payload)
-        .then((res) => {
-          this.shortenedURL = res.data.shorturl
-          this.notshortened = false
-        })
-        .catch((error) => {
-          this.errorMsg = 'An Unknown Error Occured'
-          this.errorShow = true
-          console.log(error)
-        })
     },
     clipboard: function () {
       this.$refs.shortened.select()
