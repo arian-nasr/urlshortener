@@ -1,7 +1,7 @@
 <template>
   <div class="modal modal-signin position-static d-block py-5" tabindex="-1" role="dialog" id="modalSignin">
     <div class="modal-dialog" role="document">
-      <div class="modal-content rounded-6 shadow">
+      <div class="modal-content rounded-5 shadow">
         <div class="modal-header p-5 pb-4 border-bottom-0">
           <!-- <h5 class="modal-title">Modal title</h5> -->
           <h2 class="fw-bold mb-0">Sign In</h2>
