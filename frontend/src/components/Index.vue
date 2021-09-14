@@ -47,7 +47,7 @@ export default {
   methods: {
     shorten: function () {
       this.errorShow = false
-      if url !== '' {
+      if (url !== '') {
         const path = 'https://onebounce.me/api/shorten'
         const payload = {
           url: this.url
