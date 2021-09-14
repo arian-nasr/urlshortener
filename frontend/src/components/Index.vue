@@ -43,6 +43,9 @@ export default {
       shortenedURL: ''
     }
   },
+  created () {
+    document.title = 'URL Shortener - OneBounce'
+  },
   methods: {
     shorten: function () {
       this.errorShow = false

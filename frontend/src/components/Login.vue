@@ -37,7 +37,7 @@ export default {
     }
   },
   created () {
-    document.title = 'Login'
+    document.title = 'Login - OneBounce'
   },
   methods: {
     submitform: function () {
