@@ -18,7 +18,7 @@
               <label for="floatingPassword">Password</label>
             </div>
             <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="button" @click="submitform">Sign In</button>
-            <div class="alert alert-danger rounded-4" role="alert">
+            <div v-if="errorShow" class="alert alert-danger rounded-4" role="alert">
               {{ errorMsg }}
             </div>
           </form>
