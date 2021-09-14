@@ -17,8 +17,7 @@
               <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password" v-model="password">
               <label for="floatingPassword">Password</label>
             </div>
-            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="button" @click="submitform">Sign up</button>
-            <hr class="my-4">
+            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="button" @click="submitform">Sign In</button>
           </form>
         </div>
       </div>
@@ -59,19 +58,6 @@ export default {
 </script>
 
 <style>
-.b-example-divider {
-  height: 3rem;
-  background-color: rgba(0, 0, 0, .1);
-  border: solid rgba(0, 0, 0, .15);
-  border-width: 1px 0;
-  box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-}
-
-.bi {
-  vertical-align: -.125em;
-  fill: currentColor;
-}
-
 .rounded-4 { border-radius: .5rem; }
 .rounded-5 { border-radius: .75rem; }
 .rounded-6 { border-radius: 1rem; }
