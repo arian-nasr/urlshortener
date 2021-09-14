@@ -6,7 +6,6 @@
           <!-- <h5 class="modal-title">Modal title</h5> -->
           <h2 class="fw-bold mb-0">Sign In</h2>
         </div>
-
         <div class="modal-body p-5 pt-0">
           <form class="">
             <div class="form-floating mb-3">

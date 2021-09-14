@@ -1,85 +1,25 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+  <div class="modal modal-signin position-static d-block py-5" tabindex="-1" role="dialog" id="modalSignin">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content rounded-5 shadow">
+        <div class="modal-header p-5 pb-4 border-bottom-0">
+          <!-- <h5 class="modal-title">Modal title</h5> -->
+          <h2 class="fw-bold mb-0 text-center">URL Shortener</h2>
+        </div>
+        <div class="modal-body p-5 pt-0">
+          <form class="">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control rounded-4" id="floatingInput" placeholder="Long URL" v-model="url">
+              <label for="floatingInput">Long URL</label>
+            </div>
+            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="button" @click="submitform">Shorten</button>
+            <div v-if="errorShow" class="alert alert-danger rounded-4" role="alert">
+              {{ errorMsg }}
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -88,26 +28,34 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      url: '',
+      errorShow: false,
+      errorMsg: ''
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
+<style>
+.rounded-4 { border-radius: .5rem !important; }
+.rounded-5 { border-radius: .75rem !important; }
+.rounded-6 { border-radius: 1rem !important; }
+
+.modal-sheet .modal-dialog {
+  width: 380px;
+  transition: bottom .75s ease-in-out;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.modal-sheet .modal-footer {
+  padding-bottom: 2rem;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+.modal-alert .modal-dialog {
+  width: 380px;
 }
-a {
-  color: #42b983;
+
+.border-right { border-right: 1px solid #eee; }
+
+.modal-tour .modal-dialog {
+  width: 380px;
 }
 </style>
