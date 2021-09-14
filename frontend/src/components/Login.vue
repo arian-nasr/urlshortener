@@ -9,7 +9,7 @@
         <div class="modal-body p-5 pt-0">
           <form class="">
             <div class="form-floating mb-3">
-              <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com" v-model="email" v-on:keyup.enter="$event.target.nextElementSibling.focus()">
+              <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com" v-model="email">
               <label for="floatingInput">Email address</label>
             </div>
             <div class="form-floating mb-3">
