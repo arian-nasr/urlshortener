@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     shorten: function () {
-      this.shortened = true
+      this.notshortened = false
       this.shortenedURL = 'https://onebounce.me/google'
     },
     clipboard: function () {
