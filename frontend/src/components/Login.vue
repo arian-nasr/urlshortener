@@ -7,20 +7,18 @@
           <h2 class="fw-bold mb-0">Sign In</h2>
         </div>
         <div class="modal-body p-5 pt-0">
-          <form class="">
-            <div class="form-floating mb-3">
-              <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com" v-model="email">
-              <label for="floatingInput">Email address</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password" v-model="password" v-on:keyup.enter="submitform">
-              <label for="floatingPassword">Password</label>
-            </div>
-            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="button" @click="submitform">Sign In</button>
-            <div v-if="errorShow" class="alert alert-danger rounded-4" role="alert">
-              {{ errorMsg }}
-            </div>
-          </form>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com" v-model="email">
+            <label for="floatingInput">Email address</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password" v-model="password" v-on:keyup.enter="submitform">
+            <label for="floatingPassword">Password</label>
+          </div>
+          <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="button" @click="submitform">Sign In</button>
+          <div v-if="errorShow" class="alert alert-danger rounded-4" role="alert">
+            {{ errorMsg }}
+          </div>
         </div>
       </div>
     </div>
