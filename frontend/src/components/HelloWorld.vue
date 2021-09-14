@@ -6,7 +6,7 @@
           <!-- <h5 class="modal-title">Modal title</h5> -->
           <h2 class="fw-bold mb-0">URL Shortener</h2>
         </div>
-        <div v-if"shortened" class="modal-body p-5 pt-0">
+        <div v-if="notshortened" class="modal-body p-5 pt-0">
           <form class="">
             <div class="form-floating mb-3">
               <input type="text" class="form-control rounded-4" id="floatingInput" placeholder="Long URL" v-model="url">
@@ -41,7 +41,7 @@ export default {
       url: '',
       errorShow: false,
       errorMsg: '',
-      shortened: false,
+      notshortened: true,
       shortenedURL: ''
     }
   },
