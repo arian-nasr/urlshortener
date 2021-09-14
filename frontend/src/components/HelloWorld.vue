@@ -6,7 +6,7 @@
           <!-- <h5 class="modal-title">Modal title</h5> -->
           <h2 class="fw-bold mb-0">URL Shortener</h2>
         </div>
-        <div class="modal-body p-5 pt-0" v-if"shortened">
+        <div v-if"shortened" class="modal-body p-5 pt-0">
           <form class="">
             <div class="form-floating mb-3">
               <input type="text" class="form-control rounded-4" id="floatingInput" placeholder="Long URL" v-model="url">
@@ -18,7 +18,7 @@
             </div>
           </form>
         </div>
-        <div class="modal-body p-5 pt-0" v-else>
+        <div v-else class="modal-body p-5 pt-0">
           <form class="">
             <div class="input-group mb-3">
               <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" v-model="shortenedURL" ref="shortened">
