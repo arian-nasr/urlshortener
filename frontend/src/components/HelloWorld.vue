@@ -23,7 +23,7 @@
             <div class="input-group mb-3">
               <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" v-model="shortenedURL" ref="shortened">
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button">Copy</button>
+                <button class="btn btn-outline-secondary" type="button" @click="clipboard">Copy</button>
               </div>
             </div>
           </form>
