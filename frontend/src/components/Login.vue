@@ -54,9 +54,10 @@ export default {
         .then((res) => {
           if (res.data.message === 'success') {
             window.location.replace('https://onebounce.me/panel')
-          } else {
-            this.errorMsg = 'Incorrect Email or Password'
           }
+        })
+        .catch((error) => {
+          this.errorMsg = 'Incorrect Email or Password'
         })
     }
   }
