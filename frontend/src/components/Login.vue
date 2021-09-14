@@ -35,7 +35,8 @@ export default {
     return {
       email: '',
       password: '',
-      errorMsg: ''
+      errorMsg: '',
+      errorShow: false
     }
   },
   created () {
@@ -43,7 +44,7 @@ export default {
   },
   methods: {
     submitform: function () {
-      this.errorMsg = ''
+      this.errorShow = false
       const path = 'https://onebounce.me/api/auth/login'
       axios.post(path, {}, {
         auth: {
@@ -58,6 +59,7 @@ export default {
         })
         .catch((error) => {
           this.errorMsg = 'Incorrect Email or Password'
+          this.errorShow = true
           console.log(error)
         })
     }
