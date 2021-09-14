@@ -60,7 +60,7 @@ export default {
 <style>
 .rounded-4 { border-radius: .5rem; }
 .rounded-5 { border-radius: .75rem; }
-.rounded-6 { border-radius: 1rem; }
+.rounded-6 { border-radius: 2rem; }
 
 .modal-sheet .modal-dialog {
   width: 380px;
