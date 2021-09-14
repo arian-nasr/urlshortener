@@ -7,16 +7,14 @@
           <h2 class="fw-bold mb-0">URL Shortener</h2>
         </div>
         <div v-if="notshortened" class="modal-body p-5 pt-0">
-          <form class="">
-            <div class="form-floating mb-3">
-              <input type="text" class="form-control rounded-4" id="floatingInput" placeholder="Long URL" v-model="url" v-on:keyup.enter="shorten">
-              <label for="floatingInput">Long URL</label>
-            </div>
-            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="button" @click="shorten">Shorten</button>
-            <div v-if="errorShow" class="alert alert-danger rounded-4" role="alert">
-              {{ errorMsg }}
-            </div>
-          </form>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control rounded-4" id="floatingInput" placeholder="Long URL" v-model="url" v-on:keyup.enter="shorten">
+            <label for="floatingInput">Long URL</label>
+          </div>
+          <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="button" @click="shorten">Shorten</button>
+          <div v-if="errorShow" class="alert alert-danger rounded-4" role="alert">
+            {{ errorMsg }}
+          </div>
         </div>
         <div v-else class="modal-body p-5 pt-0">
           <form class="">
