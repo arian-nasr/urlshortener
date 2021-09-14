@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 const routerOptions = [
-  { path: '/', component: 'HelloWorld' },
-  { path: '/index.html', component: 'HelloWorld' },
+  { path: '/', component: 'Index' },
+  { path: '/index.html', component: 'Index' },
   { path: '/login', component: 'Login' },
   { path: '/panel', component: 'Panel' }
 ]
