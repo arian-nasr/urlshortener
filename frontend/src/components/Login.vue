@@ -58,6 +58,7 @@ export default {
         })
         .catch((error) => {
           this.errorMsg = 'Incorrect Email or Password'
+          console.log(error)
         })
     }
   }
