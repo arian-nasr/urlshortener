@@ -18,6 +18,9 @@
               <label for="floatingPassword">Password</label>
             </div>
             <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="button" @click="submitform">Sign In</button>
+            <div class="alert alert-danger" role="alert">
+              {{ errorMsg }}}
+            </div>
           </form>
         </div>
       </div>
@@ -31,7 +34,8 @@ export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      errorMsg: ''
     }
   },
   created () {
@@ -39,6 +43,7 @@ export default {
   },
   methods: {
     submitform: function () {
+      this.errorMsg = ''
       const path = 'https://onebounce.me/api/auth/login'
       axios.post(path, {}, {
         auth: {
@@ -49,6 +54,9 @@ export default {
         .then((res) => {
           if (res.data.message === 'success') {
             window.location.replace('https://onebounce.me/panel')
+          }
+          else {
+            this.errorMsg = 'Incorrect Email or Password'
           }
         })
     }
