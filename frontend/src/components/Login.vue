@@ -57,9 +57,9 @@ export default {
 </script>
 
 <style>
-.rounded-4 { border-radius: .5rem; }
+.rounded-4 { border-radius: .5rem !important; }
 .rounded-5 { border-radius: .75rem !important; }
-.rounded-6 { border-radius: 1rem; }
+.rounded-6 { border-radius: 1rem !important; }
 
 .modal-sheet .modal-dialog {
   width: 380px;
