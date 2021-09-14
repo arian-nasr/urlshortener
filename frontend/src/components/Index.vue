@@ -65,7 +65,6 @@ export default {
       } else {
         this.errorMsg = 'Please Enter a URL'
         this.errorShow = true
-        console.log(error)
       }
     },
     clipboard: function () {
