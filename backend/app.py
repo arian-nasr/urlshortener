@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash,check_password_hash
 import jwt
 from flask_talisman import Talisman
 from flask_compress import Compress
-from pymongo import MongoClient
+from pymongo import MongoClient, ReturnDocument
 import hashlib
 from functools import wraps
 import os
@@ -77,7 +77,7 @@ def shorten():
     id = str(hashlib.md5(longurl.encode('utf-8')).hexdigest())[:5]
     myquery = {'url': longurl}
     newvalues = {'$setOnInsert': {'id': id, 'url': longurl, 'clicks': 0}}
-    mydoc = mycol.find_one_and_update(myquery, newvalues, upsert=True)
+    mydoc = mycol.find_one_and_update(myquery, newvalues, upsert=True, return_document=ReturnDocument.AFTER)
     response_object = {'status': 'success'}
     response_object['shorturl'] = 'onebounce.me/{}'.format(mydoc['id'])
     return jsonify(response_object)
