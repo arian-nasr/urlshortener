@@ -14,7 +14,7 @@
               <label for="floatingInput">Email address</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password" v-model="password">
+              <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password" v-model="password" v-on:keyup.enter="submitform">
               <label for="floatingPassword">Password</label>
             </div>
             <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="button" @click="submitform">Sign In</button>
