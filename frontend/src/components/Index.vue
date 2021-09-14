@@ -24,7 +24,6 @@
               </div>
             </div>
             <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="button" @click="back">Start Over</button>
-          </div>
         </div>
       </div>
     </div>
