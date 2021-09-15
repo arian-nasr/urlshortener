@@ -49,7 +49,7 @@ export default {
   },
   mounted () {
     bootstrap().then((gtag) => {
-        // all done!
+      // all done!
     })
   },
   methods: {
