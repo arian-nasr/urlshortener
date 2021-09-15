@@ -33,7 +33,7 @@
 
 <script>
 import axios from 'axios'
-import Recaptcha from 'Recaptcha'
+import Recaptcha from './Recaptcha.vue'
 export default {
   name: 'HelloWorld',
   data () {
