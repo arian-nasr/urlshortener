@@ -33,7 +33,7 @@
 
 <script>
 import axios from 'axios'
-import Recaptcha from 'recaptcha'
+import Recaptcha from 'Recaptcha'
 export default {
   name: 'HelloWorld',
   data () {
