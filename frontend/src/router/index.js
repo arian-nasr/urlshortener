@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import VueAnalytics from 'vue-analytics'
 
 const routerOptions = [
   { path: '/', component: 'Index' },
@@ -17,7 +18,14 @@ const routes = routerOptions.map(route => {
 
 Vue.use(Router)
 
-export default new Router({
-  routes,
-  mode: 'history'
+const router = new Router({
+  mode: 'history',
+  routes
+});
+
+Vue.use(VueAnalytics, {
+  id: 'UA-207682383-1',
+  routes
 })
+
+export default router
