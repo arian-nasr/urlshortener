@@ -54,19 +54,6 @@ def geturl(id):
         return redirect(redirurl)
     return abort(404)
 
-# @app.route('/api/shorten', methods=['GET', 'POST'])
-# def shorten():
-#     response_object = {'status': 'success'}
-#     if request.method == 'POST':
-#         post_data = request.get_json()
-#         if post_data.get('operation') == 'shorten':
-#             id = post_data.get('id')
-#             url = post_data.get('url')
-#             mydict = {'id': id, 'url': url, 'clicks': 0}
-#             mycol.insert_one(mydict)
-#             response_object['shorturl'] = 'onebounce.me/{}'.format(id)
-#     return jsonify(response_object)
-
 @app.route('/api/shorten', methods=['POST'])
 def shorten():
     post_data = request.get_json()
