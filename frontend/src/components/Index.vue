@@ -11,8 +11,7 @@
             <input type="text" class="form-control rounded-4" id="floatingInput" placeholder="Long URL" v-model="url" v-on:keyup.enter="shorten">
             <label for="floatingInput">Long URL</label>
           </div>
-          <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="button" @click="executeRecaptcha">Shorten</button>
-          <recaptcha ref="recaptcha" @verify="shorten"></recaptcha>
+          <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="button" @click="shorten">Shorten</button>
           <div v-if="errorShow" class="alert alert-danger rounded-4" role="alert">
             {{ errorMsg }}
           </div>
@@ -33,7 +32,6 @@
 
 <script>
 import axios from 'axios'
-import Recaptcha from './Recaptcha.vue'
 export default {
   name: 'HelloWorld',
   data () {
@@ -47,9 +45,6 @@ export default {
   },
   created () {
     document.title = 'URL Shortener - OneBounce'
-  },
-  components: {
-    Recaptcha
   },
   methods: {
     shorten: function () {
@@ -82,12 +77,6 @@ export default {
       this.url = ''
       this.notshortened = true
       this.shortenedURL = ''
-    },
-    submit (response) {
-      console.log(response)
-    },
-    executeRecaptcha () {
-      this.$refs.recaptcha.execute()
     }
   }
 }
