@@ -23,6 +23,8 @@ def isauthenticated(request):
     try:
         token = request.cookies.get('JWT')
         data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
+        if data is None:
+            print('None')
         print(data)
         myquery = {'public_id': data['public_id']}
         current_user = mydb['auth'].find_one(myquery)
