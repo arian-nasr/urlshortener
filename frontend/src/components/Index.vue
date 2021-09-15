@@ -32,6 +32,7 @@
 
 <script>
 import axios from 'axios'
+import Recaptcha from 'recaptcha'
 export default {
   name: 'HelloWorld',
   data () {
@@ -45,6 +46,9 @@ export default {
   },
   created () {
     document.title = 'URL Shortener - OneBounce'
+  },
+  components: {
+    Recaptcha
   },
   methods: {
     shorten: function () {
@@ -77,6 +81,12 @@ export default {
       this.url = ''
       this.notshortened = true
       this.shortenedURL = ''
+    },
+    submit (response) {
+      console.log(response)
+    },
+    executeRecaptcha () {
+      this.$refs.recaptcha.execute()
     }
   }
 }
