@@ -11,7 +11,8 @@
             <input type="text" class="form-control rounded-4" id="floatingInput" placeholder="Long URL" v-model="url" v-on:keyup.enter="shorten">
             <label for="floatingInput">Long URL</label>
           </div>
-          <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="button" @click="shorten">Shorten</button>
+          <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="button" @click="executeRecaptcha">Shorten</button>
+          <recaptcha ref="recaptcha" @verify="shorten"></recaptcha>
           <div v-if="errorShow" class="alert alert-danger rounded-4" role="alert">
             {{ errorMsg }}
           </div>

@@ -1,8 +1,5 @@
 <template>
-  <div 
-  id="g-recaptcha"
-  class="g-recaptcha"
-  :data-sitekey="sitekey">
+  <div id="g-recaptcha" class="g-recaptcha" :data-sitekey="sitekey">
   </div>
 </template>
 
@@ -31,7 +28,7 @@ export default {
             // emit an event called verify with the response as payload
             this.$emit('verify', response)
             // reset the recaptcha widget so you can execute it again
-            this.reset() 
+            this.reset()
           }
         })
       }
