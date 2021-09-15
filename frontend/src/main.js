@@ -2,12 +2,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import 'bootstrap/dist/css/bootstrap.css'
-import VueGtag from "vue-gtag"
+import VueGtag from 'vue-gtag'
 
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 Vue.use(VueGtag, {
-  config: { id: "UA-207682383-1" }
+  config: { id: 'UA-207682383-1' }
 }, router)
 
 new Vue({
