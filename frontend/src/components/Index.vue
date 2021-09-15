@@ -32,6 +32,7 @@
 
 <script>
 import axios from 'axios'
+import { bootstrap } from 'vue-gtag'
 export default {
   name: 'HelloWorld',
   data () {
@@ -45,6 +46,11 @@ export default {
   },
   created () {
     document.title = 'URL Shortener - OneBounce'
+  },
+  mounted () {
+    bootstrap().then((gtag) => {
+        // all done!
+      })
   },
   methods: {
     shorten: function () {

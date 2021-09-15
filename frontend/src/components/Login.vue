@@ -27,6 +27,7 @@
 
 <script>
 import axios from 'axios'
+import { bootstrap } from 'vue-gtag'
 export default {
   data () {
     return {
@@ -38,6 +39,11 @@ export default {
   },
   created () {
     document.title = 'Login - OneBounce'
+  },
+  mounted () {
+    bootstrap().then((gtag) => {
+        // all done!
+      })
   },
   methods: {
     submitform: function () {

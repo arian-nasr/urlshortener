@@ -86,13 +86,18 @@
 
 <script>
 import axios from 'axios'
-
+import { bootstrap } from 'vue-gtag'
 export default {
   name: 'HelloWorld',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  mounted () {
+    bootstrap().then((gtag) => {
+        // all done!
+      })
   },
   methods: {
     logout: function () {
