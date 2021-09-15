@@ -22,10 +22,10 @@ Compress(app)
 def isauthenticated(request):
     try:
         token = request.cookies.get('JWT')
-        jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
-        return True
+        decodedToken = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
+        return decodedToken
     except:
-        return False
+        return None
 
 @app.route('/')
 @app.route('/index.html')
