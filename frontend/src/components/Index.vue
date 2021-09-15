@@ -1,7 +1,7 @@
 <template>
-  <div class="neededdiv">
+  <div>
     <header>
-      <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom neededdiv">
+      <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
         <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
           <span class="fs-4">OneBounce URL Shortener</span>
         </a>
@@ -134,9 +134,5 @@ export default {
 
 .modal-tour .modal-dialog {
   width: 380px;
-}
-
-.neededdiv {
-  margin: 0;
 }
 </style>
