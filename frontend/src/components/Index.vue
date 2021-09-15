@@ -138,5 +138,6 @@ export default {
 
 .logospacing {
   padding-left: 1rem;
+  padding-top: 1rem;
 }
 </style>
