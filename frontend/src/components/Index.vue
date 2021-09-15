@@ -62,24 +62,29 @@ export default {
         }
         axios.post(path, payload)
           .then((res) => {
+            this.$gtag.event('shortened')
             this.shortenedURL = res.data.shorturl
             this.notshortened = false
           })
           .catch((error) => {
+            this.$gtag.event('url shorten error')
             this.errorMsg = 'An Unknown Error Occured'
             this.errorShow = true
             console.log(error)
           })
       } else {
+        this.$gtag.event('no url entered')
         this.errorMsg = 'Please Enter a URL'
         this.errorShow = true
       }
     },
     clipboard: function () {
+      this.$gtag.event('url copied')
       this.$refs.shortened.select()
       navigator.clipboard.writeText(this.shortenedURL)
     },
     back: function () {
+      this.$gtag.event('url shorten back')
       this.url = ''
       this.notshortened = true
       this.shortenedURL = ''

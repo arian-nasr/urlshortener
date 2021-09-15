@@ -57,10 +57,12 @@ export default {
       })
         .then((res) => {
           if (res.data.message === 'success') {
+            this.$gtag.event('login')
             window.location.replace('https://onebounce.me/panel')
           }
         })
         .catch((error) => {
+          this.$gtag.event('login error')
           this.errorMsg = 'Incorrect Email or Password'
           this.errorShow = true
           console.log(error)

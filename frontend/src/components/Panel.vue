@@ -105,6 +105,7 @@ export default {
       axios.get(path)
         .then((res) => {
           if (res.data.message === 'success') {
+            this.$gtag.event('logout')
             window.location.replace('https://onebounce.me/login')
           }
         })
