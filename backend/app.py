@@ -66,7 +66,6 @@ def shorten():
     response_object['shorturl'] = 'onebounce.me/{}'.format(mydoc['id'])
     return jsonify(response_object)
 
-
 @app.route('/api/auth/register', methods=['POST'])
 def register():
     data = request.get_json()
