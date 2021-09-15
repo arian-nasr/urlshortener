@@ -21,7 +21,7 @@ Vue.use(Router)
 const router = new Router({
   mode: 'history',
   routes
-});
+})
 
 Vue.use(VueAnalytics, {
   id: 'UA-207682383-1',
