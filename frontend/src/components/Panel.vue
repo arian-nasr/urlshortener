@@ -97,7 +97,7 @@ export default {
   mounted () {
     bootstrap().then((gtag) => {
         // all done!
-      })
+    })
   },
   methods: {
     logout: function () {

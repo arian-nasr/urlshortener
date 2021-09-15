@@ -43,7 +43,7 @@ export default {
   mounted () {
     bootstrap().then((gtag) => {
         // all done!
-      })
+    })
   },
   methods: {
     submitform: function () {

@@ -50,7 +50,7 @@ export default {
   mounted () {
     bootstrap().then((gtag) => {
         // all done!
-      })
+    })
   },
   methods: {
     shorten: function () {
