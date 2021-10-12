@@ -34,8 +34,8 @@ func main() {
 	r := gin.Default()
 	r.Use(cors.Default())
 	r.Use(gzip.Gzip(gzip.DefaultCompression))
-	r.LoadHTMLGlob("../urlshortener/dist/*.html")
-	r.Static("/static", "../urlshortener/dist/static")
+	r.LoadHTMLGlob("../dist/*.html")
+	r.Static("/static", "../dist/static")
 
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{})
