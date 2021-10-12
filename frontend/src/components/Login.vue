@@ -49,14 +49,12 @@ export default {
     submitform: function () {
       this.errorShow = false
       const path = 'https://onebounce.me/api/auth/login'
-      axios.post(path, {}, {
-        auth: {
-          username: this.email,
-          password: this.password
-        }
+      axios.post(path, {
+        Email: this.email,
+        Password: this.password
       })
         .then((res) => {
-          if (res.data.message === 'success') {
+          if (res.data.message === 'successfully signed in') {
             this.$gtag.event('login')
             window.location.replace('https://onebounce.me/panel')
           }

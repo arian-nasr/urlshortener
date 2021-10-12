@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, abort, jsonify, request, make_response
+from flask import Flask, render_template, redirect, abort, jsonify, request, make_response, send_from_directory
 from werkzeug.security import generate_password_hash,check_password_hash
 import jwt
 from flask_talisman import Talisman
@@ -16,7 +16,7 @@ mycol = mydb['urls']
 
 app = Flask(__name__, static_folder='../dist/static', template_folder='../dist')
 app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
-Talisman(app, content_security_policy=None)
+#Talisman(app, content_security_policy=None)
 Compress(app)
 
 def isauthenticated(request):
@@ -26,6 +26,11 @@ def isauthenticated(request):
         return decodedToken
     except:
         return None
+
+@app.route('/sitemap.xml')
+@app.route('/robots.txt')
+def bots():
+    return send_from_directory(app.static_folder, request.path[1:])
 
 @app.route('/')
 @app.route('/index.html')
@@ -98,4 +103,5 @@ def authenticate():
 
     return make_response('could not verify',  401, {'Authentication': '"login required"'})
 
-app.run(debug=True, host='10.128.0.3', port=443, ssl_context=('onebounce_me.crt', 'onebounce_me.key'))
+#app.run(debug=True, host='10.128.0.3', port=443, ssl_context=('onebounce_me.crt', 'onebounce_me.key'))
+app.run(debug=True, host='10.128.0.3', port=5000)
